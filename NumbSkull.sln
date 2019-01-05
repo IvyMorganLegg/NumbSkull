@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbSkull", "NumbSkull\NumbSkull.csproj", "{3A33F444-19D7-456A-919F-14A2A9837E0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A33F444-19D7-456A-919F-14A2A9837E0E}.Debug|x86.ActiveCfg = Debug|x86
+		{3A33F444-19D7-456A-919F-14A2A9837E0E}.Debug|x86.Build.0 = Debug|x86
+		{3A33F444-19D7-456A-919F-14A2A9837E0E}.Release|x86.ActiveCfg = Release|x86
+		{3A33F444-19D7-456A-919F-14A2A9837E0E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E90961AE-5C67-4134-9265-B75C2B1B85D0}
+	EndGlobalSection
+EndGlobal
