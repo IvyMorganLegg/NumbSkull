@@ -22,20 +22,20 @@ namespace MonoGame
         static public int screenW, screenH;
         static public Vector2 screen_center;
 
-        // T E X T U R E S //
+        //textures
         Texture2D far_background, mid_background;
         Texture2D tiles_images;
 
-        // R E C T A N G L E S //
+        //Rectangles
         Rectangle screenRect, desktopRect;
 
-        // P O S I T I O N S //
+        //Positions
         static public Vector2 background_pos;
 
-        // R E N D E R  T A R G E T S //
+        //Render
         RenderTarget2D MainTarget;
 
-        // I N P U T //
+        //Input
         Input inp;
 
         // C O N S T R U C T //
@@ -89,6 +89,11 @@ namespace MonoGame
             inp.Update();
             if (inp.Keypress(Keys.Escape)) Exit();
 
+            if (inp.Keydown(Keys.Left)) background_pos.X++;
+            if (inp.Keydown(Keys.Right)) background_pos.X--;
+            if (inp.Keydown(Keys.Up)) background_pos.Y++;
+            if (inp.Keydown(Keys.Down)) background_pos.Y--;
+
             base.Update(gameTime);
         }
 
@@ -97,10 +102,21 @@ namespace MonoGame
         {
             GraphicsDevice.SetRenderTarget(MainTarget);
 
+            //Far BG
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.LinearWrap);
+            spriteBatch.Draw(far_background,screenRect, new Rectangle((int)(-background_pos.X*0.5f), 0, far_background.Width, far_background.Height), Color.White);
+            spriteBatch.End();
+
+            //Mid BG
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointWrap);
+            spriteBatch.Draw(mid_background, screenRect, new Rectangle((int)(-background_pos.X), (int)(-background_pos.Y), far_background.Width, far_background.Height), Color.White);
+            spriteBatch.End();
+
             //DrawStuff
-            //graphics.SetRenderTarget(null);
+            GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullNone);
             spriteBatch.Draw(MainTarget, desktopRect, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
