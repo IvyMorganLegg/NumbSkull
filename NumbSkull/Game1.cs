@@ -3,10 +3,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 #endregion
 
-namespace MonoGame
+namespace NumbSkull
 {
     public class Game1 : Game
     {
@@ -35,6 +37,11 @@ namespace MonoGame
         //Render
         RenderTarget2D MainTarget;
 
+        //MapData
+        const int MAX_SHEET_PARTS = 300;
+        Sheet[] sheet;
+        SheetManager sheet_mgr;
+
         //Input
         Input inp;
 
@@ -58,6 +65,7 @@ namespace MonoGame
         // I N I T //
         protected override void Initialize()
         {
+            //Setup
             spriteBatch = new SpriteBatch(GraphicsDevice);
             MainTarget = new RenderTarget2D(GraphicsDevice, SCREENWIDTH, SCREENHEIGHT);
             pp = GraphicsDevice.PresentationParameters;
@@ -66,11 +74,14 @@ namespace MonoGame
             screenH = MainTarget.Height;
             desktopRect = new Rectangle(0, 0, pp.BackBufferWidth, pp.BackBufferHeight);
             screenRect = new Rectangle(0, 0, screenW, screenH);
-            //screenRect.Center
             screen_center = new Vector2(screenW / 2.0f, screenH / 2.0f) - new Vector2(32f, 32f);
 
             inp = new Input();
             base.Initialize();
+
+            //Map
+            sheet = new Sheet[MAX_SHEET_PARTS];
+            sheet_mgr = new SheetManager();
         }
 
         // L O A D //
@@ -104,13 +115,13 @@ namespace MonoGame
 
             //Far BG
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.LinearWrap);
-            spriteBatch.Draw(far_background,screenRect, new Rectangle((int)(-background_pos.X*0.5f), 0, far_background.Width, far_background.Height), Color.White);
+            spriteBatch.Draw(far_background, screenRect, new Rectangle((int)(-background_pos.X * 0.5f), 0, far_background.Width, far_background.Height), Color.White);
             spriteBatch.End();
 
             //Mid BG
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointWrap);
-            spriteBatch.Draw(mid_background, screenRect, new Rectangle((int)(-background_pos.X), (int)(-background_pos.Y), far_background.Width, far_background.Height), Color.White);
-            spriteBatch.End();
+            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.LinearWrap);
+            //spriteBatch.Draw(mid_background, screenRect, new Rectangle((int)(-background_pos.X), (int)(-background_pos.Y), far_background.Width, far_background.Height), Color.White);
+            //spriteBatch.End();
 
             //DrawStuff
             GraphicsDevice.SetRenderTarget(null);

@@ -35,14 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>default\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="default\Program.cs" />
+    <Compile Include="MapStuff\Sheet.cs" />
+    <Compile Include="MapStuff\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User Interface\Input.cs" />
   </ItemGroup>
@@ -54,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
+    <Content Include="default\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
